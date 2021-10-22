@@ -20,8 +20,10 @@ public class serverO {
 				DataOutputStream out= new DataOutputStream(s.getOutputStream());
 				
 				BufferedReader inFromClient = new BufferedReader(new InputStreamReader(s.getInputStream()));
-	            String clientSentence = inFromClient.readLine();	           
-	            System.out.println("Received: " + clientSentence);
+	            String clientpara = inFromClient.readLine();	           
+				System.out.println("Received: " + clientpara);
+				
+				
 			}
 		}catch(Exception e){
 			System.out.println(e.getMessage());
