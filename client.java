@@ -16,7 +16,9 @@ public class client {
 			 dout.writeUTF(" hello this is assignment 1 of distrbuted computing. ");
 			
 			
-			
+			 BufferedReader inFromClient = new BufferedReader(new InputStreamReader(s.getInputStream()));
+	            int num= in.read();
+	            System.out.println("this is the number of vowels"+num);
 			
 			
 			

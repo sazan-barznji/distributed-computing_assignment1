@@ -6,7 +6,7 @@ import java.io.*;
 public class serverO {
 
 	public static void main(String[] args) {
-		int port= 4321; 
+		int port= 9736; 
 		try {
 			ServerSocket conn= new ServerSocket(port);
 			while (1==1) {
@@ -22,7 +22,8 @@ public class serverO {
 				BufferedReader inFromClient = new BufferedReader(new InputStreamReader(s.getInputStream()));
 	            String clientpara = inFromClient.readLine();	           
 				System.out.println("Received: " + clientpara);
-				
+				int count=vowelcounter(clientpara);
+				out.writeInt(count);
 				
 			}
 		}catch(Exception e){
@@ -30,5 +31,17 @@ public class serverO {
 		}
 
 	}
-
+	public static int vowelcounter (String str) {
+		int count=0;
+		for (int i=0; i<str.length();i++) {
+			if (str.charAt(i)=='o') {
+				count++;
+			}
+		}
+	
+		return count;
+	}
+	
+	
+	
 }
