@@ -24,6 +24,7 @@ public class serverO {
 				System.out.println("Received: " + clientpara);
 				int count=vowelcounter(clientpara);
 				out.writeInt(count);
+			
 				
 			}
 		}catch(Exception e){
