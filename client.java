@@ -1,12 +1,11 @@
-package se450_assignment;
-import java.net.*;
 import java.io.*;
+import java.net.*;
 
-public class client {
 
-	public static void main(String[] args) {
+public class Client {
+    public static void main(String[] args) {
 		try{
-			Socket s= new Socket ("127.0.0.1",4321);
+			 Socket s= new Socket ("127.0.0.1",4444);
 			 InputStream in= s.getInputStream();
 			 OutputStream out= s.getOutputStream();
 			 
@@ -17,7 +16,7 @@ public class client {
 			
 			
 			 BufferedReader inFromClient = new BufferedReader(new InputStreamReader(s.getInputStream()));
-	            int num= in.read();
+	            int num= inFromClient.read();
 	            System.out.println("this is the number of vowels"+num);
 			
 			
@@ -28,5 +27,5 @@ public class client {
 		
 
 	}
-
+    
 }

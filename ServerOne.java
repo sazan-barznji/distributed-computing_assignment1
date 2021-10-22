@@ -1,20 +1,19 @@
-package se450_assignment;
-
-import java.net.*;
 import java.io.*;
+import java.net.*;
 
-public class serverO {
 
-	public static void main(String[] args) {
-		int port= 9736; 
+public class ServerOne{
+
+    public static void main(String[] args) {
+		int port= 4444; 
 		try {
 			ServerSocket conn= new ServerSocket(port);
 			while (1==1) {
 				Socket s= conn.accept();
 				System.out.println("client is connected");
 				
-				Thread t= new Thread();
-				t.start();
+				// Thread t= new Thread();
+				// t.start();
 				
 				DataInputStream  input = new DataInputStream(s.getInputStream());
 				DataOutputStream out= new DataOutputStream(s.getOutputStream());
@@ -42,7 +41,5 @@ public class serverO {
 	
 		return count;
 	}
-	
-	
-	
+
 }
