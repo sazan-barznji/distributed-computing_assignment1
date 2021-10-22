@@ -7,10 +7,10 @@ public class MyClient {
             Socket s = new Socket("localhost", 7777);
             DataOutputStream dout = new DataOutputStream(s.getOutputStream());
             dout.writeUTF("hello this is assignment 1 of distrbuted computing");
-            dout.flush();
-            
+            dout.flush();           
             dout.close();
             s.close();
+            
         } catch (Exception e) {
             System.out.println(e);
         }
