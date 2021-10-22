@@ -4,10 +4,11 @@ import java.net.*;
 public class MyClient {
     public static void main(String[] args) {
         try {
-            Socket s = new Socket("localhost", 6666);
+            Socket s = new Socket("localhost", 7777);
             DataOutputStream dout = new DataOutputStream(s.getOutputStream());
             dout.writeUTF("hello this is assignment 1 of distrbuted computing");
             dout.flush();
+            
             dout.close();
             s.close();
         } catch (Exception e) {
