@@ -1,3 +1,4 @@
+package se450_assignment;
 public class ReqFourB {
     public static void main(String[] args) {
         String theText = "Thus the length of the substring is endIndex-beginIndexxhelllos efpoeaimjfsa";

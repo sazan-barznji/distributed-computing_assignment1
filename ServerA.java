@@ -1,3 +1,4 @@
+package se450_assignment;
 import java.io.*;
 import java.net.*;
 
@@ -11,6 +12,12 @@ public class ServerA {
 
             int numberOfVowls = vowelcounter(str);
             System.out.println("Number Of Vowel a = " + numberOfVowls);
+
+            DataOutputStream dout= new DataOutputStream (s.getOutputStream());
+            dout.writeInt(numberOfVowls);
+            
+
+
             ss.close();
         } catch (Exception e) {
             System.out.println(e);
