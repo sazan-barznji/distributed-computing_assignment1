@@ -5,16 +5,17 @@ import java.net.*;
 public class ServerA {
     public static void main(String[] args) {
         try {
-            ServerSocket ss = new ServerSocket(1111);
+            ServerSocket ss = new ServerSocket(8080);
             Socket s = ss.accept();// establishes connection
+            System.out.println("A proxy Node connected");
             DataInputStream dis = new DataInputStream(s.getInputStream());
             String str = (String) dis.readUTF();
 
             int numberOfVowls = vowelcounter(str);
             System.out.println("Number Of Vowel a = " + numberOfVowls);
 
-            DataOutputStream dout= new DataOutputStream (s.getOutputStream());
-            dout.writeInt(numberOfVowls);
+            // DataOutputStream dout= new DataOutputStream (s.getOutputStream());
+            // dout.writeInt(numberOfVowls);
             
 
 
