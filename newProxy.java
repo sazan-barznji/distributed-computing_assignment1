@@ -2,7 +2,7 @@
 import java.net.*;
 import java.io.*;
 
-public class Proxy
+public class newProxy
 {
 	public static void main(String[] args) throws IOException {
 		try{
