@@ -21,9 +21,15 @@ public class newProxy
 							try {
 								final DataInputStream c2pIn = new DataInputStream(c2p.getInputStream()) ;
                                 final DataOutputStream c2pOut = new DataOutputStream(c2p.getOutputStream()) ;
+
+								ServersInfo ServerOneInfo = new ServersInfo(p2serverA);
+								
                                 
-								final DataInputStream p2serverAIn = new DataInputStream(p2serverA.getInputStream()) ;
+								final DataInputStream p2serverAIn = ServerOneInfo ;
 								final DataOutputStream p2serverAOut =new DataOutputStream(p2serverA.getOutputStream()) ;
+
+								final DataInputStream p2serverEIn = new DataInputStream(p2serverE.getInputStream());
+								final DataOutputStream p2serverEOut =new DataOutputStream(p2serverE.getOutputStream());
 
 								Thread t1 = new Thread(new Runnable(){
 										public void run(){
@@ -32,6 +38,11 @@ public class newProxy
 												while( (b=c2pIn.readLine()) != null ){
 													p2serverAOut.writeUTF(b);
 													p2serverAOut.flush();
+
+													p2serverEOut.writeUTF(b);
+													p2serverEOut.flush();
+
+
 												}
 											}catch(Exception ex){
 												ex.printStackTrace();
@@ -47,7 +58,10 @@ public class newProxy
 												while( (b=p2serverAIn.readLine()) != null ){
 													c2pOut.writeUTF(b);
 													c2pOut.flush();
+
+
 												}
+												
 											}catch(Exception ex){
 												ex.printStackTrace();
 											}
