@@ -16,8 +16,12 @@ public class ServersInfo {
         out = new DataOutputStream(socket.getOutputStream());
     }
 
-    public DataInputStream getInputStream(){
-        return
+    public DataInputStream doRead(){
+        return in;
+    }
+
+    public DataOutputStream doWrite(){
+        return out;
     }
 
 

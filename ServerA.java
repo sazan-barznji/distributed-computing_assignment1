@@ -1,26 +1,45 @@
 //package se450_assignment;
 import java.io.*;
 import java.net.*;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ServerA {
     public static void main(String[] args) {
         try {
+            int counter = 1;
+
+            List<InetAddress> clients = new LinkedList<InetAddress>();
+
+            // When a client connects, check the list, if the ip is availble.
+            // if the ip is not avilable, then add the ip to the linked list, and run the vowls
+            // else if it is available in the list, then run the word counting function, and remove the ip in the list
+
             ServerSocket ss = new ServerSocket(8080);
-            Socket s = ss.accept();// establishes connection
-            System.out.println("A proxy Node connected");
-            DataInputStream dis = new DataInputStream(s.getInputStream());
-            String str = (String) dis.readUTF();
+            while(true){
+                Socket s = ss.accept();// establishes connection
+                InetAddress ipAddress = s.getLocalAddress();
+                clients.add(ipAddress);
 
-            int numberOfVowls = vowelcounter(str);
-            System.out.println("Number Of Vowel a = " + numberOfVowls);
+                
 
-             DataOutputStream dout= new DataOutputStream (s.getOutputStream());
-             dout.writeInt(numberOfVowls);
-
-            int numberOfWords= countWordsInSentence(str);
-            dout.writeInt(numberOfWords);
-
-            ss.close();
+                System.out.println("A proxy Node connected");
+                DataInputStream dis = new DataInputStream(s.getInputStream());
+                String str = (String) dis.readUTF();
+    
+                int numberOfVowls = vowelcounter(str);
+                System.out.println("Number Of Vowel a = " + numberOfVowls);
+    
+                 DataOutputStream dout= new DataOutputStream (s.getOutputStream());
+                 dout.writeInt(numberOfVowls);
+    
+                int numberOfWords= countWordsInSentence(str);
+                dout.writeInt(numberOfWords);
+    
+                ss.close();
+            }
+            
+           
         } catch (Exception e) {
             System.out.println(e);
         }
