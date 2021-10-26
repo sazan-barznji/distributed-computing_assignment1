@@ -3,24 +3,52 @@ import java.io.*;
 import java.net.*;
 
 public class ServerI {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+
+       
         try {
-            ServerSocket ss = new ServerSocket(3333);
-            Socket s = ss.accept();// establishes connection
-            DataInputStream dis = new DataInputStream(s.getInputStream());
-            String str = (String) dis.readUTF();
+            ServerSocket ss = new ServerSocket(8080);
+            while(true){
+                Socket s = ss.accept();
+                
+                
+                DataInputStream dis = new DataInputStream(s.getInputStream());
+                DataOutputStream dout= new DataOutputStream (s.getOutputStream());
+                String str = (String) dis.readUTF();
+                
 
-            int numberOfVowls = vowelcounter(str);
-            System.out.println("Number Of Vowel I = " + numberOfVowls);
+                Thread vowlCountingThread = new Thread(new Runnable() {
+					public void run() {
+                        int numberOfVowls = vowelcounter(str);
+                        try {
+                            dout.writeInt(numberOfVowls);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                vowlCountingThread.start();
+
+                Thread wordCountingThread = new Thread(new Runnable() {
+                    SplitText splitTextObject = new SplitText();
+
+                    String thePart = splitTextObject.spiltText(str, 3);
+
+					public void run() {
+                        int numberOfWords= countWordsInSentence(thePart);
+                        try {
+                            dout.writeInt(numberOfWords);
+                        } catch (IOException e) {
+                            
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                wordCountingThread.start();
+                ss.close();
+            }
             
-            DataOutputStream dout= new DataOutputStream (s.getOutputStream());
-            dout.writeInt(numberOfVowls);
-
-            int numberOfWords= countWordsInSentence(str);
-            dout.writeInt(numberOfWords);
-
-            
-            ss.close();
+           
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -36,6 +64,7 @@ public class ServerI {
 	
 		return count;
     }
+
     private static int countWordsInSentence(String input) {
         int wordCount = 0;
     
