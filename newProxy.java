@@ -108,16 +108,6 @@ public class newProxy {
 										ex.printStackTrace();
 									}
 
-									// spliting occurs here which the sting is b
-									String theText = spiltText(b,1);
-									try {
-										ServerOneInfo.doWrite().writeUTF(theText);
-									} catch (IOException e) {
-										e.printStackTrace();
-									}
-									// send the part one to serverA
-									// get the request again, and send back to the client
-
 								}
 							});
 							t1.start();
@@ -143,14 +133,6 @@ public class newProxy {
 									} catch (Exception ex) {
 										ex.printStackTrace();
 									}
-
-									String theText = spiltText(b,2);
-									try {
-										ServerTwoInfo.doWrite().writeUTF(theText);
-									} catch (IOException e) {
-										e.printStackTrace();
-									}
-
 								}
 							});
 							t2.start();
@@ -177,12 +159,7 @@ public class newProxy {
 										ex.printStackTrace();
 									}
 
-									String theText = spiltText(b,3);
-									try {
-										ServerThreeInfo.doWrite().writeUTF(theText);
-									} catch (IOException e) {
-										e.printStackTrace();
-									}
+									
 
 								}
 							});
@@ -210,12 +187,7 @@ public class newProxy {
 										ex.printStackTrace();
 									}
 
-									String theText = spiltText(b,4);
-									try {
-										ServerFourInfo.doWrite().writeUTF(theText);
-									} catch (IOException e) {
-										e.printStackTrace();
-									}
+									
 
 								}
 							});
@@ -243,12 +215,7 @@ public class newProxy {
 										ex.printStackTrace();
 									}
 
-									String theText = spiltText(b,5);
-									try {
-										ServerFiveInfo.doWrite().writeUTF(theText);
-									} catch (IOException e) {
-										e.printStackTrace();
-									}
+									
 
 								}
 							});

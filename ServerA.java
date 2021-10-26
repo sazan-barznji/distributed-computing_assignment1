@@ -1,41 +1,50 @@
 //package se450_assignment;
 import java.io.*;
 import java.net.*;
-import java.util.LinkedList;
-import java.util.List;
 
 public class ServerA {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+
+       
         try {
-            int counter = 1;
-
-            List<InetAddress> clients = new LinkedList<InetAddress>();
-
-            // When a client connects, check the list, if the ip is availble.
-            // if the ip is not avilable, then add the ip to the linked list, and run the vowls
-            // else if it is available in the list, then run the word counting function, and remove the ip in the list
-
             ServerSocket ss = new ServerSocket(8080);
             while(true){
-                Socket s = ss.accept();// establishes connection
-                InetAddress ipAddress = s.getLocalAddress();
-                clients.add(ipAddress);
-
+                Socket s = ss.accept();
+                
+                
+                DataInputStream dis = new DataInputStream(s.getInputStream());
+                DataOutputStream dout= new DataOutputStream (s.getOutputStream());
+                String str = (String) dis.readUTF();
                 
 
-                System.out.println("A proxy Node connected");
-                DataInputStream dis = new DataInputStream(s.getInputStream());
-                String str = (String) dis.readUTF();
-    
-                int numberOfVowls = vowelcounter(str);
-                System.out.println("Number Of Vowel a = " + numberOfVowls);
-    
-                 DataOutputStream dout= new DataOutputStream (s.getOutputStream());
-                 dout.writeInt(numberOfVowls);
-    
-                int numberOfWords= countWordsInSentence(str);
-                dout.writeInt(numberOfWords);
-    
+                Thread vowlCountingThread = new Thread(new Runnable() {
+					public void run() {
+                        int numberOfVowls = vowelcounter(str);
+                        try {
+                            dout.writeInt(numberOfVowls);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                vowlCountingThread.start();
+
+                Thread wordCountingThread = new Thread(new Runnable() {
+                    SplitText splitTextObject = new SplitText();
+
+                    String thePart = splitTextObject.spiltText(str, 1);
+
+					public void run() {
+                        int numberOfWords= countWordsInSentence(thePart);
+                        try {
+                            dout.writeInt(numberOfWords);
+                        } catch (IOException e) {
+                            
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                wordCountingThread.start();
                 ss.close();
             }
             
@@ -55,6 +64,7 @@ public class ServerA {
 	
 		return count;
     }
+
     private static int countWordsInSentence(String input) {
         int wordCount = 0;
     
