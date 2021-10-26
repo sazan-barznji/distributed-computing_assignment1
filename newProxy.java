@@ -6,7 +6,7 @@ import java.io.*;
 public class newProxy {
 	public static void main(String[] args) throws IOException {
 		try {
-			ServerSocket server = new ServerSocket(9999);
+			ServerSocket server = new ServerSocket(1234);
 			while (true) {
 				Socket c2p = server.accept();
 				System.out.println("A client connected to the Proxy");
@@ -23,7 +23,6 @@ public class newProxy {
 							final DataOutputStream c2pOut = new DataOutputStream(c2p.getOutputStream());
 
 							ServersInfo ServerOneInfo = new ServersInfo(p2serverA);
-
 							ServersInfo ServerTwoInfo = new ServersInfo(p2serverE);
 							ServersInfo ServerThreeInfo = new ServersInfo(p2serverI);
 							ServersInfo ServerFourInfo = new ServersInfo(p2serverO);
@@ -40,7 +39,13 @@ public class newProxy {
 										}
 									} catch (Exception ex) {
 
-										ex.printStackTrace();
+										try {
+											Thread.sleep(4000);
+										} catch (Exception e) {
+											System.out.println(e.getMessage());
+										}
+										System.out.println(ex.getMessage());
+
 									}
 
 									try {
@@ -66,7 +71,12 @@ public class newProxy {
 											ServerTwoInfo.doWrite().flush();
 										}
 									} catch (Exception ex) {
-										ex.printStackTrace();
+										try {
+											Thread.sleep(4000);
+										} catch (Exception e) {
+											System.out.println(e.getMessage());
+										}
+										System.out.println(ex.getMessage());
 									}
 
 									try {
@@ -91,7 +101,12 @@ public class newProxy {
 											ServerThreeInfo.doWrite().flush();
 										}
 									} catch (Exception ex) {
-										ex.printStackTrace();
+										try {
+											Thread.sleep(4000);
+										} catch (Exception e) {
+											System.out.println(e.getMessage());
+										}
+										System.out.println(ex.getMessage());
 									}
 
 									try {
@@ -103,8 +118,6 @@ public class newProxy {
 									} catch (Exception ex) {
 										ex.printStackTrace();
 									}
-
-									
 
 								}
 							});
@@ -119,7 +132,12 @@ public class newProxy {
 											ServerFourInfo.doWrite().flush();
 										}
 									} catch (Exception ex) {
-										ex.printStackTrace();
+										try {
+											Thread.sleep(4000);
+										} catch (Exception e) {
+											System.out.println(e.getMessage());
+										}
+										System.out.println(ex.getMessage());
 									}
 
 									try {
@@ -131,8 +149,6 @@ public class newProxy {
 									} catch (Exception ex) {
 										ex.printStackTrace();
 									}
-
-									
 
 								}
 							});
@@ -147,7 +163,12 @@ public class newProxy {
 											ServerFiveInfo.doWrite().flush();
 										}
 									} catch (Exception ex) {
-										ex.printStackTrace();
+										try {
+											Thread.sleep(4000);
+										} catch (Exception e) {
+											System.out.println(e.getMessage());
+										}
+										System.out.println(ex.getMessage());
 									}
 
 									try {
@@ -159,8 +180,6 @@ public class newProxy {
 									} catch (Exception ex) {
 										ex.printStackTrace();
 									}
-
-									
 
 								}
 							});
@@ -181,5 +200,4 @@ public class newProxy {
 		}
 	}
 
-	
 }
