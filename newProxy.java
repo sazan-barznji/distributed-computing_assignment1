@@ -1,5 +1,7 @@
+//SE450 - Assignment 1
+//Sazan Fawzi - sf16360@auis.edu.krd
+//Mohammed Karem - mk16174@auis.edu.krd
 
-//package se450_assignment;
 import java.net.*;
 import java.io.*;
 
@@ -201,3 +203,8 @@ public class newProxy {
 	}
 
 }
+
+
+//References
+//https://stackoverflow.com/questions/5864159/count-words-in-a-string-method
+//https://stackoverflow.com/questions/6939204/reliable-tcp-ip-in-java
