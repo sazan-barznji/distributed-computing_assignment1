@@ -8,7 +8,7 @@ public class ServerU {
 
        
         try {
-            ServerSocket ss = new ServerSocket(8080);
+            ServerSocket ss = new ServerSocket(5555);
             while(true){
                 Socket s = ss.accept();
                 

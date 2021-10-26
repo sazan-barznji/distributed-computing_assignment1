@@ -7,7 +7,7 @@ public class ServerO {
 
        
         try {
-            ServerSocket ss = new ServerSocket(8080);
+            ServerSocket ss = new ServerSocket(4444);
             while(true){
                 Socket s = ss.accept();
                 
