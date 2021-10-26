@@ -29,62 +29,6 @@ public class newProxy {
 							ServersInfo ServerFourInfo = new ServersInfo(p2serverO);
 							ServersInfo ServerFiveInfo = new ServersInfo(p2serverU);
 
-							// final DataInputStream p2serverAIn = new
-							// DataInputStream(p2serverA.getInputStream()) ;
-							// final DataOutputStream p2serverAOut =new
-							// DataOutputStream(p2serverA.getOutputStream()) ;
-
-							// final DataInputStream p2serverEIn = new
-							// DataInputStream(p2serverE.getInputStream());
-							// final DataOutputStream p2serverEOut =new
-							// DataOutputStream(p2serverE.getOutputStream());
-
-							// Thread t1 = new Thread(new Runnable(){
-							// public void run(){
-							// String b;
-							// try{
-							// while( (b=c2pIn.readLine()) != null ){
-
-							// ServerOneInfo.doWrite().writeUTF(b);
-							// ServerOneInfo.doWrite().flush();
-
-							// ServerTwoInfo.doWrite().writeUTF(b);
-							// ServerTwoInfo.doWrite().flush();
-
-							// ServerThreeInfo.doWrite().writeUTF(b);
-							// ServerThreeInfo.doWrite().flush();
-
-							// ServerFourInfo.doWrite().writeUTF(b);
-							// ServerFourInfo.doWrite().flush();
-
-							// ServerFiveInfo.doWrite().writeUTF(b);
-							// ServerFiveInfo.doWrite().flush();
-
-							// }
-							// }catch(Exception ex){
-							// ex.printStackTrace();
-							// }
-							// }
-							// });
-							// t1.start();
-
-							// Thread t2 = new Thread(new Runnable(){
-							// public void run(){
-							// String b;
-							// try{
-							// while( (b=ServerOneInfo.doRead().readLine()) != null ){
-							// c2pOut.writeUTF(b);
-							// c2pOut.flush();
-
-							// }
-
-							// }catch(Exception ex){
-							// ex.printStackTrace();
-							// }
-							// }
-							// });
-							// t2.start();
-
 							Thread t1 = new Thread(new Runnable() {
 								public void run() {
 									String b = "";
@@ -95,6 +39,7 @@ public class newProxy {
 											ServerOneInfo.doWrite().flush();
 										}
 									} catch (Exception ex) {
+
 										ex.printStackTrace();
 									}
 
@@ -236,56 +181,5 @@ public class newProxy {
 		}
 	}
 
-	public static String spiltText(String theText, int Server) {
-
-		int stringLength = theText.length();
-
-		int partPerServer = stringLength / 5;
-
-		boolean hasReminder = false;
-		int theReminder = 0;
-
-		String partOne;
-		String partTwo;
-		String partThree;
-		String partFour;
-		String partFive;
-
-		// System.out.println("Total Length: " + stringLength);
-		// System.out.println("each part " + partPerServer);
-
-		if (stringLength % 5 != 0) {
-			hasReminder = true;
-			theReminder = stringLength % 5;
-		}
-
-		// System.out.println("total each part " + ((partPerServer * 5) + theReminder));
-
-		partOne = theText.substring(0, partPerServer);
-
-		partTwo = theText.substring(partPerServer, (partPerServer * 2));
-
-		partThree = theText.substring((partPerServer * 2), (partPerServer * 3));
-
-		partFour = theText.substring((partPerServer * 3), (partPerServer * 4));
-
-		if (hasReminder) {
-			partFive = theText.substring((partPerServer * 4), ((partPerServer * 5) + theReminder));
-		} else {
-			partFive = theText.substring((partPerServer * 4), (partPerServer * 5));
-		}
-
-		if (Server == 1) {
-			return partOne;
-		} else if (Server == 2) {
-			return partTwo;
-		} else if (Server == 3) {
-			return partThree;
-		} else if (Server == 4) {
-			return partFour;
-		} else {
-			return partFive;
-		}
-
-	}
+	
 }
